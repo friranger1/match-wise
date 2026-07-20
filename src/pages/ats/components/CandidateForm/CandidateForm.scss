@@ -76,4 +76,8 @@
       border-color: $color-accent-hover;
     }
   }
+
+  &--error {
+    border: 1.5px solid $color-error;
+  }
 }

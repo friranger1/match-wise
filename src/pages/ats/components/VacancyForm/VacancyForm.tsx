@@ -4,11 +4,15 @@ import './VacancyForm.scss';
 type Props = {
   vacancyForm: VacancyFormData;
   setVacancyForm: React.Dispatch<React.SetStateAction<VacancyFormData>>;
+  validationErrors: string[];
+  setValidationErrors: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const VacancyForm: React.FC<Props> = ({
   vacancyForm,
   setVacancyForm,
+  validationErrors,
+  setValidationErrors,
 }) => {
   return (
     <>
@@ -16,22 +20,32 @@ export const VacancyForm: React.FC<Props> = ({
         <div className="vacancy__form--container">
           <h2 className="vacancy__form--header">Input vacancy info</h2>
 
-          <form action="POST" className="vacancy__form--form">
+          <form method="POST" className="vacancy__form--form">
             <div className="vacancy__form--input-container">
               <label className="vacancy__form--label" htmlFor="vacancy-title">
                 Vacancy title
               </label>
               <input
+                required
                 type="text"
                 id="vacancy-title"
-                className="vacancy__form--input-title"
-                placeholder="Motion designer"
+                className={`vacancy__form--input-title ${
+                  validationErrors.includes('title')
+                    ? 'vacancy__form--error'
+                    : ''
+                }`}
+                placeholder="e.g. Product Designer"
                 value={vacancyForm.title}
                 onChange={(event) => {
                   setVacancyForm((prev) => ({
                     ...prev,
                     title: event.target.value,
                   }));
+                }}
+                onBlur={() => {
+                  setValidationErrors((prev) =>
+                    prev.filter((error) => error !== 'title'),
+                  );
                 }}
               />
             </div>
@@ -44,9 +58,14 @@ export const VacancyForm: React.FC<Props> = ({
                 Vacancy description
               </label>
               <textarea
+                required
                 name="vacancy-description"
                 id="vacancy-description"
-                className="vacancy__form--input-description"
+                className={`vacancy__form--input-description ${
+                  validationErrors.includes('description')
+                    ? 'vacancy__form--error'
+                    : ''
+                }`}
                 placeholder="Input vacancy description here"
                 value={vacancyForm.description}
                 onChange={(event) => {
@@ -54,6 +73,11 @@ export const VacancyForm: React.FC<Props> = ({
                     ...prev,
                     description: event.target.value,
                   }));
+                }}
+                onBlur={() => {
+                  setValidationErrors((prev) =>
+                    prev.filter((error) => error !== 'description'),
+                  );
                 }}
               ></textarea>
             </div>

@@ -22,11 +22,35 @@ export const AtsPage = () => {
   const [loader, setLoader] = useState(false);
   const [response, setResponse] = useState<AtsResponse>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
+
+  function validateForm(): string[] {
+    const errors: string[] = [];
+
+    if (!vacancyForm.title.trim()) {
+      errors.push('title');
+    }
+
+    if (!vacancyForm.description.trim()) {
+      errors.push('description');
+    }
+
+    if (!candidateForm.resume) {
+      errors.push('resume');
+    }
+
+    return errors;
+  }
 
   const handleAnalyze = async () => {
-    if (!candidateForm.resume) {
+    const errors = validateForm();
+    setValidationErrors(errors);
+
+    if (errors.length > 0 || !candidateForm.resume) {
       return;
     }
+
+    setValidationErrors([]);
 
     setLoader(true);
 
@@ -58,13 +82,18 @@ export const AtsPage = () => {
             <VacancyForm
               vacancyForm={vacancyForm}
               setVacancyForm={setVacancyForm}
-            />
+              validationErrors={validationErrors}
+              setValidationErrors={setValidationErrors}
+              />
             <CandidateForm
               candidateForm={candidateForm}
               setCandidateForm={setCandidateForm}
+              validationErrors={validationErrors}
+              setValidationErrors={setValidationErrors}
             />
           </div>
           <button
+            type="button"
             className="ats__forms--button"
             onClick={handleAnalyze}
             disabled={loader}

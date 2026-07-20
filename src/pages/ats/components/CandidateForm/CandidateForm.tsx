@@ -4,10 +4,14 @@ import './CandidateForm.scss';
 type Props = {
   candidateForm: CandidateFormData;
   setCandidateForm: React.Dispatch<React.SetStateAction<CandidateFormData>>;
+  validationErrors: string[];
+  setValidationErrors: React.Dispatch<React.SetStateAction<string[]>>;
 };
 export const CandidateForm: React.FC<Props> = ({
   candidateForm,
   setCandidateForm,
+  validationErrors,
+  setValidationErrors,
 }) => {
   return (
     <>
@@ -23,7 +27,11 @@ export const CandidateForm: React.FC<Props> = ({
               <input
                 id="cv-file"
                 type="file"
-                className="candidate__form--input-file"
+                className={`candidate__form--input-file ${
+                  validationErrors.includes('resume')
+                    ? 'candidate__form--error'
+                    : ''
+                }`}
                 placeholder="Motion designer"
                 accept=".pdf,.doc,.docx"
                 onChange={(event) => {
@@ -33,6 +41,12 @@ export const CandidateForm: React.FC<Props> = ({
                     ...prev,
                     resume: file,
                   }));
+                }}
+
+                onBlur={() => {
+                  setValidationErrors((prev) =>
+                    prev.filter((error) => error !== 'resume'),
+                  );
                 }}
               />
             </div>
