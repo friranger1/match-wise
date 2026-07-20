@@ -1,5 +1,10 @@
-export default function handler(request: Request) {
-  return Response.json({
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+export default function handler(
+  req: VercelRequest,
+  res: VercelResponse,
+) {
+  return res.status(200).json({
     message: 'Backend works',
   });
 }
