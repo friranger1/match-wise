@@ -1,0 +1,36 @@
+.modal {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: $color-surface;
+  padding: 3em;
+  border-radius: 30px;
+  margin: 3em;
+  box-shadow: $shadow-md;
+
+  h2 {
+    margin: 10px 0;
+  }
+
+  &__button-close {
+    background-image: url('../../../../public/CrossIcon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: center 9px;
+    background-size: 50%;
+    right: 4%;
+    top: 4%;
+    position: absolute;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    background-color: $color-background;
+    border-radius: 50%;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

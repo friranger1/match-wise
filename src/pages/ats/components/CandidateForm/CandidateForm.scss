@@ -1,0 +1,76 @@
+.candidate__form {
+  padding: 30px;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+  box-shadow: $shadow-sm;
+  width: 100%;
+
+  &--header {
+    font-size: $sub-title-size;
+    font-weight: $semi-bold;
+  }
+
+  &--input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 12px;
+  }
+
+  &--label {
+    font-size: $text-size;
+  }
+
+  &--input-file {
+    border-radius: $radius-sm;
+    border: 1.5px solid $color-primary;
+    font-size: $text-size;
+    padding: 15px 0;
+    transition: all 0.3s ease-in-out 0.1s;
+
+    &::file-selector-button {
+      margin: 0 20px;
+
+      height: 25px;
+      border-radius: 7px;
+      border: none;
+      background: $color-primary;
+      color: #ffffff;
+      font-size: $text-size;
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    &::file-selector-button:hover {
+      background: $color-primary-hover;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+    }
+  }
+
+  &--input-description {
+    border-radius: $radius-sm;
+    border: 1.5px solid $color-primary;
+    font-size: $text-size;
+    padding: 15px;
+    min-height: 300px;
+    transition: all 0.3s ease-in-out 0.1s;
+
+    &::placeholder {
+      color: $color-text-secondary;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: $shadow-md;
+    }
+
+    &:hover {
+      border-color: $color-accent-hover;
+    }
+  }
+}
