@@ -62,6 +62,8 @@ export async function analyzeResume(
     throw new Error('Резюме должно быть в формате PDF');
   }
 
+  console.log(apiKey?.slice(0, 8));
+  console.log(apiKey?.length);
   const base64File = await fileToBase64(resumeFile);
 
   const prompt = `

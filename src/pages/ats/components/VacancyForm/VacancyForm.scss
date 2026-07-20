@@ -5,6 +5,10 @@
   box-shadow: $shadow-sm;
   width: 100%;
 
+  @include mobile {
+    width: auto;
+  }
+
   &--header {
     font-size: $sub-title-size;
     font-weight: $semi-bold;
