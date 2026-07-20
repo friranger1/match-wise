@@ -3,7 +3,7 @@
   padding: 3em;
   margin: 3em;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   border-radius: 30px;
   background: $color-surface;
   box-shadow: $shadow-md;
@@ -12,7 +12,7 @@
 
   @include mobile {
     left: 39%;
-    width: min(65vw, 200px);
+    width: min(65vw, 700px);
   }
 
   h2 {
