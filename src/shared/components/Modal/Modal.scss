@@ -1,13 +1,19 @@
 .modal {
   position: absolute;
-  top: 40%;
+  padding: 3em;
+  margin: 3em;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: $color-surface;
-  padding: 3em;
   border-radius: 30px;
-  margin: 3em;
+  background: $color-surface;
   box-shadow: $shadow-md;
+  box-sizing: border-box;
+  width: min(90vw, 700px);
+
+  @include mobile {
+    left: 39%;
+    width: min(65vw, 200px);
+  }
 
   h2 {
     margin: 10px 0;
